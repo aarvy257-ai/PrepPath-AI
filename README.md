@@ -1,36 +1,43 @@
-# PrepPath AI Frontend
+# PrepPath AI Backend Service
 
-React + Vite + Tailwind CSS User Interface for PrepPath AI.
+FastAPI-powered backend API for PrepPath AI (Opportunity-to-Application Readiness Platform).
 
 ## Directory Structure
 
 ```
-frontend/
-├── src/
-│   ├── components/   # Reusable UI Components
-│   ├── pages/        # Application Page Components
-│   ├── layouts/      # Application Layout Shells
-│   ├── services/     # API Client & Backend Communication Services
-│   ├── hooks/        # Custom React Hooks
-│   ├── utils/        # Utility Functions & Formatters
-│   ├── App.jsx       # Landing Page Component
-│   ├── main.jsx      # React Entrypoint
-│   └── index.css     # Tailwind CSS Entrypoint
-├── package.json
+backend/
+├── app/
+│   ├── main.py       # Application factory & CORS configuration
+│   ├── config.py     # Pydantic Settings & Environment loading
+│   ├── models/       # Database & Domain Models (Future phases)
+│   ├── schemas/      # Pydantic Request/Response Schemas
+│   ├── routes/       # API Routers & Endpoints
+│   ├── services/     # Business & Deterministic Rule Engine Logic
+│   ├── ai/           # AI Extraction & Explanation Handlers
+│   └── utils/        # Common Utilities
+├── requirements.txt  # Python Dependencies
 └── README.md
 ```
 
 ## Setup & Running Locally
 
-1. **Install dependencies**:
+1. **Create and activate a virtual environment**:
    ```bash
-   npm install
+   python -m venv .venv
+   # PowerShell / CMD
+   .venv\Scripts\activate
    ```
 
-2. **Start Development Server**:
+2. **Install dependencies**:
    ```bash
-   npm run dev
+   pip install -r requirements.txt
    ```
 
-3. **Access Application**:
-   - Open browser at `http://localhost:5173`
+3. **Start the API Server**:
+   ```bash
+   uvicorn app.main:app --reload --port 8000
+   ```
+
+4. **Verify Health Endpoint**:
+   - Access: `http://localhost:8000/health`
+   - OpenAPI Documentation: `http://localhost:8000/docs`
